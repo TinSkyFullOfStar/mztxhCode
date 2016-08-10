@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,18 +10,48 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/order', function () {
+    return view('travel.order');
 });
 
 
-Route::any('wechat','WeChatController@serve');
+Route::any('wechat', 'WeChatController@serve');
 
-
-Route::get('foo',function(){
-	return 'hello world';
-});
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+
+Route::get('/checkcode', 'TestController@index');
+
+
+Route::group(['middleware' => 'auth'], function () {
+    
+    Route::get('/addCar', function () {
+        return view('manage.addCar');
+    });
+    
+    
+    Route::get('/addPrice', function () {
+        return view('manage.price');
+    });
+    
+    
+    Route::post('/car', 'TestController@addCar');
+    
+    
+    Route::post('/price', 'TestController@addPrice');
+
+    Route::get('/check',function(){
+        return view('manage.checkPay');
+    });
+
+    Route::post('/checkPay','TestController@pay');
+    
+});
+
+
+Route::get('/test', function (\Illuminate\Http\Request $request) {
+    return $request->session()->get('authCode');
+});
+
+Route::post('/orderPost','Travel/TravelController@index');

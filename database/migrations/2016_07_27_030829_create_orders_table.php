@@ -14,11 +14,14 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('pay');
             $table->integer('status');
             $table->string('up_place');
             $table->string('down_place');
-            $table->integer('user_id');
+            $table->integer('pay');
+            $table->integer('pre_pay');
+            $table->integer('tel');
+            $table->integer('count');
+            $table->integer('user_id')->unique();
             $table->integer('car_id');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');

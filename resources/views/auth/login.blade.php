@@ -1,7 +1,12 @@
 @extends('layouts.app')
-
+<script type="text/javascript" src="{{asset('http://code.jquery.com/jquery-latest.js')}}"></script>
+<script type="text/javascript">
+    function getCode() {
+        $('#code')[0].src='/mztxhCode/public/checkcode';
+    }
+</script>
 @section('content')
-<div class="container">
+    <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -37,6 +42,18 @@
                                 @endif
                             </div>
                         </div>
+
+                        <div>
+                            <label for="password" class="col-md-4 control-label" style="margin-right: 10px;">CheckCode</label>
+                            <input type="text" class="form-control" style="width: 200px;" name="checkCode"/>
+                            <img src="/mztxhCode/public/checkcode" style="width: 100px;margin-left: 35%;margin-top:2%;" onclick="getCode()" id="code"/>
+                            @if (isset($checkCode))
+                                <span class="help-block" style="margin-left: 35%;">
+                                        <strong>{{ $checkCode }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

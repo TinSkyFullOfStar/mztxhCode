@@ -15,7 +15,8 @@ class CreateCarStatusTable extends Migration
         Schema::create('car_status', function (Blueprint $table) {
             $table->increments('id');
             $table->dateTime('departure');
-            $table->string('up_place');
+            $table->string('detail_place');
+            $table->integer('car_count');
             $table->integer('admin_id');
             $table->timestamps();
             $table->foreign('admin_id')->reference('id')->on('admins');
