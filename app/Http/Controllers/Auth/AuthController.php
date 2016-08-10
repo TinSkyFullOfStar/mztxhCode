@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Http\Request;
 use Validator;
+use Auth;
+use Redirect;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -68,5 +71,15 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+
+    public function login(Request $request)
+    {
+        $authCode=strtoupper($request->getSession()->get('authCode'));
+        $checkCode=strtoupper($request->checkCode);
+        if ($authCode==$checkCode&&Auth::attempt(['email' => $request->email, 'password' => $request->password]))
+            return redirect()->intended('dashboard');
+        return redirect('/login');
     }
 }
