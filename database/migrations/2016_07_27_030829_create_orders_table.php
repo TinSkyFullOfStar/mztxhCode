@@ -19,12 +19,11 @@ class CreateOrdersTable extends Migration
             $table->string('down_place');
             $table->integer('pay');
             $table->integer('pre_pay');
-            $table->integer('tel');
             $table->integer('count');
-            $table->integer('user_id')->unique();
+            $table->integer('customer_id')->unique();
             $table->integer('car_id');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('customer_id')->references('id')->on('customers');
             $table->foreign('car_id')->references('id')->on('car_status');
             $table->index('user_id');
         });

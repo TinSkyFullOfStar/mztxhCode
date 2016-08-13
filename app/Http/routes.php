@@ -10,48 +10,49 @@
 |
 */
 
-Route::get('/order', function () {
+Route::auth();
+
+
+Route::get('order', function () {
     return view('travel.order');
 });
+
+
+Route::match(['post','get'],'getCar','TravelController@getCar');
 
 
 Route::any('wechat', 'WeChatController@serve');
 
 
-Route::auth();
+Route::post('orderPost','Travel\TravelController@index');
 
 
-Route::get('/checkcode', 'TestController@index');
+Route::get('checkcode', 'TestController@index');
 
 
 Route::group(['middleware' => 'auth'], function () {
     
-    Route::get('/addCar', function () {
+    Route::get('addCar', function () {
         return view('manage.addCar');
     });
     
     
-    Route::get('/addPrice', function () {
+    Route::get('addPrice', function () {
         return view('manage.price');
     });
     
     
-    Route::post('/car', 'TestController@addCar');
+    Route::post('car', 'TestController@addCar');
     
     
-    Route::post('/price', 'TestController@addPrice');
+    Route::post('price', 'TestController@addPrice');
 
-    Route::get('/check',function(){
-        return view('manage.checkPay');
+   
+    Route::get('check',function(){
+        return view('manage.checkPay',['path'=>'/mztxhCode/public/checkPay']);
     });
 
-    Route::post('/checkPay','TestController@pay');
+   
+    Route::post('checkPay','TestController@pay');
     
 });
-
-
-Route::get('/test', function (\Illuminate\Http\Request $request) {
-    return $request->session()->get('authCode');
-});
-
-Route::post('/orderPost','Travel/TravelController@index');

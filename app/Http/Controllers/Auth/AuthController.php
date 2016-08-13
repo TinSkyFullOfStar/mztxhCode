@@ -46,7 +46,7 @@ class AuthController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -61,7 +61,7 @@ class AuthController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
@@ -76,10 +76,12 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $authCode=strtoupper($request->getSession()->get('authCode'));
-        $checkCode=strtoupper($request->checkCode);
-        if ($authCode==$checkCode&&Auth::attempt(['email' => $request->email, 'password' => $request->password]))
+        $authCode = strtoupper($request->getSession()->get('authCode'));
+        $checkCode = strtoupper($request->checkCode);
+        
+        if ($authCode == $checkCode && Auth::attempt(['email' => $request->email, 'password' => $request->password]))
             return redirect()->intended('dashboard');
+        
         return redirect('/login');
     }
 }

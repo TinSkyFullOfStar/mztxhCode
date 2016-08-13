@@ -35,7 +35,7 @@ class TestController extends Controller
         ]);
 
         $car = new CarStatus();
-        $car->admin_id = $request->user()->id;
+        $car->user_id = $request->user()->id;
         $car->departure = $request->time;
         $car->detail_place = $request->de_place;
         $car->car_count = $request->car_count;
