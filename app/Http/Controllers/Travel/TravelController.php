@@ -72,9 +72,9 @@ class TravelController extends Controller
     
     public function getCar(Request $request)
     {
-        if ($request->method() == 'get') {
-            $departrues = CarStatus()::lists('departure');
-            return view('travel.getCar', ['time' => $departrues]);
+        if ($request->method() == 'GET') {
+            //$departrues = CarStatus()::lists('departure');
+            return view('travel.getCar');
         } else {
             $time = $request->time;
             $place = $request->start;

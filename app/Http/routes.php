@@ -17,8 +17,15 @@ Route::get('order', function () {
     return view('travel.order');
 });
 
+Route::post('test',function(){
+   var_dump($_POST);
+});
 
-Route::match(['post','get'],'getCar','TravelController@getCar');
+Route::get('getPlace',function(){
+   return view("travel.getPlace");
+});
+
+Route::match(['post','get'],'getCar','Travel\TravelController@getCar');
 
 
 Route::any('wechat', 'WeChatController@serve');
@@ -28,6 +35,11 @@ Route::post('orderPost','Travel\TravelController@index');
 
 
 Route::get('checkcode', 'TestController@index');
+
+Route::get('foo/{data}',function($data){
+    $data=json_decode($data);
+    var_dump($data);
+});
 
 
 Route::group(['middleware' => 'auth'], function () {
