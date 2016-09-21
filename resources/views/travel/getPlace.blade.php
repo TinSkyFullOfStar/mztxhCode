@@ -8,13 +8,13 @@
 <body>
 <!-- 头部 [[ -->
 <header class="header">
-    <h1 class="title">广州-深圳</h1>
+    <h1 class="title">{{ $start }}-{{ $end }}</h1>
     <a class="u_btn btn btn_return" href="javascript:history.go(-1);">
         <span class="icon icon_angle_left"></span>
     </a>
 </header>
 <!-- 头部 ]] -->
-<form id="fm1" name="fm1" action="/mztxhCode/public/test" method="POST" >
+<form id="fm1" name="fm1" action="/mztxhCode/public/getCar" method="POST" >
 
     <!-- main [[ -->
     <div class="main bus_detail">
@@ -30,24 +30,12 @@
 
                     <!-- 站点 -->
 
-                    <li class="site_list  ">
-                        <!-- 选择 -->
-                        <label>
-                            <input class="radio" type="radio" name="geton" value="2754" data-lat="23.146582" data-lng="113.26794"  >
-                        </label>
+                    @if($up==0)
+                        {!! $list[1] !!}
+                    @else
+                        {!! $list[0] !!}
+                    @endif
 
-                        <span class="icon">始</span>17:30
-                        越秀公园地铁B1出口
-                    </li>
-                    <li class="site_list">
-                        <!-- 选择 -->
-                        <label>
-                            <input class="radio" type="radio" name="geton" value="3378" data-lat="23.137487" data-lng="113.338374"  >
-                        </label>
-
-                        <span class="icon">上</span>18:00
-                        石牌桥地铁A出口
-                    </li>
 
                 </ul>
                 <!-- 上车站点 ]] -->
@@ -56,29 +44,11 @@
 
                 <!-- 下车 站点 [[ -->
                 <ul class="site_ul getoff pathsite_select">
-
-
-                    <li class="site_list">
-                        <label>
-                            <input class="radio" type="radio" name="getoff" value="3420" data-lat="22.544444" data-lng="113.946086">
-                        </label>
-                        <span class="icon">下</span>
-                        深大北门
-                    </li>
-                    <li class="site_list">
-                        <label>
-                            <input class="radio" type="radio" name="getoff" value="3419" data-lat="22.54297" data-lng="113.9807">
-                        </label>
-                        <span class="icon">下</span>
-                        世界之窗地铁站
-                    </li>
-                    <li class="site_list">
-                        <label>
-                            <input class="radio" type="radio" name="getoff" value="2391" data-lat="22.546151" data-lng="114.067592">
-                        </label>
-                        <span class="icon">终</span>
-                        市民中心地铁E口
-                    </li>
+                    @if($up==0)
+                        {!! $list[0] !!}
+                    @else
+                        {!! $list[1] !!}
+                    @endif
                 </ul>
                 <!-- 下车 站点 ]] -->
             </div>

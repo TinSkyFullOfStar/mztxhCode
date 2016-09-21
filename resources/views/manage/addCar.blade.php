@@ -5,6 +5,7 @@
 <body>
 <div>
     <form action="/mztxhCode/public/car" method="post">
+        <h1>请保证至少提交两次，以保证数据库数据至少有两条</h1>
         <span>发车时间：</span>
         <input type="datetime" name="time"><br>
         <span>上车地点：</span>
@@ -12,8 +13,6 @@
             <option value='华广'>华广</option>
             <option value='梅州'>梅州</option>
         </select><br>
-        <span>具体发车地点：</span>
-        <input type="text" name="de_place"><br>
         <span>车辆数：</span>
         <select name="car_count">
             <option value=1>1</option>

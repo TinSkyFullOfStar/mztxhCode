@@ -13,5 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CarStatus extends Model
 {
-    
+    protected $fillable = [
+      'up','car_count','departure','user_id'
+    ];
 }

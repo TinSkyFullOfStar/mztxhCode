@@ -12,18 +12,7 @@
 
 Route::auth();
 
-
-Route::get('order', function () {
-    return view('travel.order');
-});
-
-Route::post('test',function(){
-   var_dump($_POST);
-});
-
-Route::get('getPlace',function(){
-   return view("travel.getPlace");
-});
+Route::get('getPlace/{data}','Travel\TravelController@getPlace');
 
 Route::match(['post','get'],'getCar','Travel\TravelController@getCar');
 
@@ -31,15 +20,10 @@ Route::match(['post','get'],'getCar','Travel\TravelController@getCar');
 Route::any('wechat', 'WeChatController@serve');
 
 
-Route::post('orderPost','Travel\TravelController@index');
+Route::post('orderPost','Travel\TravelController@order');
 
 
 Route::get('checkcode', 'TestController@index');
-
-Route::get('foo/{data}',function($data){
-    $data=json_decode($data);
-    var_dump($data);
-});
 
 
 Route::group(['middleware' => 'auth'], function () {
@@ -60,11 +44,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('price', 'TestController@addPrice');
 
    
-    Route::get('check',function(){
-        return view('manage.checkPay',['path'=>'/mztxhCode/public/checkPay']);
-    });
+    Route::get('getOrder','TestController@getOrders');
 
-   
-    Route::post('checkPay','TestController@pay');
+
+    Route::post('updateOrder','TestController@updateOrders');
     
 });
+
+
+Route::get('test',function (){
+     var_dump(\App\Travel\CarStatus::where(['departure' => '2015-06-13 00:24:09', 'up' => '华广'])->get());
+});
+
+Route::post('sendSms','Travel\TravelController@sendSmsCheckCode');
+
+Route::post('register','Travel\TravelController@register');

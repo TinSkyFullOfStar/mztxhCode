@@ -13,5 +13,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Price extends Model
 {
+    protected $fillable = [
+        'place','price','pre_price',
+    ];
     
 }

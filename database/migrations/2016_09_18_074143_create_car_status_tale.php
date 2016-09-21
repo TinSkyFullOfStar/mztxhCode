@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCarStatusTable extends Migration
+class CreateCarStatusTale extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,14 @@ class CreateCarStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('car_status', function (Blueprint $table) {
+        Schema::create('car_statuses', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('departure');
-            $table->string('place');
-            $table->string('detail_place');
+            $table->string('up');
             $table->integer('car_count');
-            $table->integer('user_id');
+            $table->dateTime('departure');
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
-            $table->foreign('user_id')->reference('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

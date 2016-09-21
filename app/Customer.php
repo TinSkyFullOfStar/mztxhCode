@@ -11,7 +11,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Admins extends Model
+class Customer extends Model
 {
-    
+    protected $fillable = [
+        'tel', 'username',
+    ];
+
+    public function car(){
+        return $this->hasOne('App\Travel\CarStatus');
+    }
+
+    public function order(){
+        return $this->hasOne('App\Travel\Order');
+    }
 }

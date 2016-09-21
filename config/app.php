@@ -161,7 +161,8 @@ return [
 	/*
 	 *WeChat service Providers
 	 */
-	Overtrue\LaravelWechat\ServiceProvider::class,	
+	    Overtrue\LaravelWechat\ServiceProvider::class,
+        \TinSky\Providers\AliServiceProvider::class,
 
     ],
 

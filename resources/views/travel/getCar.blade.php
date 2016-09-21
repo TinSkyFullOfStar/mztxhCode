@@ -61,10 +61,10 @@
             $("#btn_query").bind("click",function(){
                 var city1=$("#txtCity1").text();
                 var city2=$("#txtCity2").text();
-                var date=$("#txtDay").text();
+                var date=$('input:radio[name="test2"]:checked').val();
 
                 var data='{"start":"'+city1+'", "end":"'+city2+'","date":"'+date+'"}';
-                var url="http://192.168.0.100/mztxhCode/public/foo/"+data;
+                var url="/mztxhCode/public/getPlace/"+data;
                 window.location = url;
             })
 
@@ -118,7 +118,7 @@
                 <li class="list">
                     <a class="link" id="btn_day" href="javascript:void(0);">
                         <span class="icon_l icon_calendar"></span>
-                        <span class="title" id="txtDay">2016-8-18</span>
+                        <span class="title" id="txtDay">{{ $departures[0] }}</span>
                     </a>
                 </li>
             </ul>
@@ -142,11 +142,11 @@
                 <div id="div2" style="display:none;">
                     <ul>
                         <li>
-                            <span style="font-size: 20px">2016-12-11 12:00</span>
-                            <input type="radio" name="test2" value="2016-12-11 12:00"></li>
+                            <span style="font-size: 20px">{{ $departures[0] }}</span>
+                            <input type="radio" name="test2" value='{{ $departures[0] }}'></li>
                         <li>
-                            <span style="font-size: 20px">2016-12-11 18:00</span>
-                            <input type="radio" name="test2" value="2016-12-11 18:00">
+                            <span style="font-size: 20px">{{ $departures[1] }}</span>
+                            <input type="radio" name="test2" value='{{ $departures[1] }}'>
                         </li>
                         <li>
                             <input type="button" value="确定" style="font-size: 20px" id="sure2">

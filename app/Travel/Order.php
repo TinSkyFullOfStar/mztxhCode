@@ -14,11 +14,15 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     public function price(){
-        return $this->belongsTo('App\Travel\Price');
+        return $this->hasOne('App\Travel\Price');
     }
 
     public function car(){
-        return $this->belongsTo('App\Travel\CarStatus');
+        return $this->hasOne('App\Travel\CarStatus');
+    }
+
+    public function customer(){
+        return $this->belongsTo('App\Customer');
     }
 
 }
